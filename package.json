@@ -1,0 +1,27 @@
+{
+  "name": "pets-r-us",
+  "version": "1.0.0",
+  "description": "Pets-r-us sites",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mphiseme/pets-r-us.git"
+  },
+  "author": "Manel Phiseme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mphiseme/pets-r-us/issues"
+  },
+  "homepage": "https://github.com/mphiseme/pets-r-us#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

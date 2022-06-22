@@ -1,0 +1,57 @@
+header {  
+    background-image: url("../img/bckgrnd2.png");    
+    background-size: cover;
+}
+#menu {
+    display:flex;
+    float:right;
+}
+nav {
+    border: 5px solid black;
+    background-color: white;      
+}
+nav a {
+    width: 100px;
+    padding: 5px;
+}
+#hero-header{
+    position: relative;
+    top:0;   
+    left: 0;
+    width: 100%;
+    width: 100%;
+    display: block;
+    text-align: left;
+    min-height: 100vh; 
+}
+.subMenu {
+    position: relative;     
+}
+.subMenu:hover .sublist{
+    position: relative;
+    display: block;
+}
+.sublist  {
+    display: none;
+}
+ .sublist a {
+    color: black;    
+    text-decoration: none;
+    display: block;
+}
+.menlist {
+    cursor: pointer;
+}
+.menlist {
+    padding-right: 10px;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+.allSection {    
+    padding: 0px 80px;
+    padding-bottom: 100px;
+    align-items: center;
+}
