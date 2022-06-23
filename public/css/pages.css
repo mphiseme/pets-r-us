@@ -47,10 +47,10 @@ h3 {
 
 .sectTitle {
     width: 100%;
-   
+    font-size: 18px;   
 }
-.hrTime {
-    padding-top: 100px;
+.testTitle2 {
+    margin-top: -35px;
 }
 .timeList {
     padding-right: 23px;
@@ -101,28 +101,42 @@ img {
     display: block;
 }
 #timeList {
-    text-align: center;   
-
+    text-align: center;     
+}
+.divTwoSect p {
+    line-height: 1.30;
+}
+.testImg {
+    width: 100%;
 }
 #timeTitle {
-    padding-bottom:15px;
+    padding-bottom:1px;
 }
 #timeList li {
     display:block;
-    padding:5px;    
+    padding:5px;
+    font-size: 19px;    
 }
 .divSection, .divTwoSect {
     padding-top:50px;
 }
+#img3 {
+    margin-top: 20px;
+}
 .divTwoSect p {
-    padding: 10px;
+    padding-left: 10px;
 }
 .review{
     font-weight:bold;
 }
-#compInfo {
-    margin-top: 55px;
+.compInfo {
+    margin-top: 25px;
     font-size: 20px;
+}
+.compInfo2 {
+    padding-left: 35px;
+    padding-right: 35px;
+    line-height: 1.50;
 }
 #localDetail, #localCities{
     font-size: 18px;
@@ -130,17 +144,35 @@ img {
 #localCities li {
     list-style-type: none;
 }
-.divTwoSect2 p {
+.divTwoSect p {
     padding-left: 15px;
+    padding-right: 15px;    
 }
 
- #compInfo ul li {
+ #groomlist li {
     text-indent: 10%;
     list-style-position: inside;
-    padding-top:10px;
+    padding-top:12px;
     font-size: 18px;
 }
-#compInfo ul {
+#groomlist {
     padding-top:30px;
-    margin-bottom: -20px;    
+    margin-bottom: 20px;    
+}
+.testCont {
+    width: 50%;
+}
+.reviewName {
+    padding: 10px;
+    font-weight: bold;
+    line-height: 1.30;
+
+}
+.cityName{
+    padding-bottom: 9px;
+    padding-top: 8px;
+}
+.hrTime {
+    padding-top: 20px;
+    margin-bottom: -17px;
 }
