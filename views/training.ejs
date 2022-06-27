@@ -13,50 +13,149 @@
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">        
     </head>
     <body>
-        <header id="hero-header">
-            <h1>Pets-R-Us</h1>
-                                             
-            <nav id="menu">
-                <a class="menlist" href="/">Home</a> 
-                <div class="subMenu">
-                    <span class="menlist"><a href="">Services</a></span>
-                    <div class="sublist">
-                        <a href="boarding">Boarding</a>                        
-                        <a href="grooming">Grooming</a>
-                        <a href="training">Training</a>
-                    </div>                            
-                </div>
-                <a class="menlist" href="">Booking</a>   
-                <div class="subMenu">                                               
-                    <span class="menlist"><a href="" >Account</a></span>
-                    <div class="sublist">
-                        <a href="" >Register</a>
-                        <a href="">Login</a>                          
-                    </div>                        
-                </div>                    
-            </nav>
-            <div id="content">                        
-                <h2 id="descript">Trusted for years by Everyone</h2>
-            </div>                
-        </header>         
-                  
-        </section class="allSection">
+        <%- include('partials/headers') %>
             <section class="allSection" id="section1">
                 <h3 class="sectTitle">Company Information</h3>
                 <div class="divSection">
                     <div id="divInfo" class="divAll">
-                        <p id="compInfo">  </p>
-                             <ul>
-                                <li></li>
-                                
-                             </ul>                             
-                        <p id="compInfo"></p>
+                        <p class ="compInfo">Michael Lewis Certified dog trainer in 
+                            October 1889 in Florida at Andrew Academy. 
+                            He spent two training there. 
+                            While there he learned all sort about Dogs. 
+                            He learned about their behavior as well as
+                             modification techniques.</p>
+                        <p class="compInfo">After he graduated, he moves here to
+                            Omaha, Nebraska. He worked for a small
+                            pet store downtown Omaha. 
+                           There he put his skills to work. After working in two 
+                           other places, he decided to travel to
+                            various parts of the world supporting
+                            different non-profit organizations as well as
+                            other agencies. In his last 10 months oversea,
+                            he was recognized as one of the top dog 
+                           trainers in the world. He set up training came in many countries, cities, and states.</p>
+                        <p class="compInfo"> He returned to Omaha, Nebraska in 2021.
+                            When he first came back, he started 
+                           working with family dogs in the area. 
+                           Neighbors would bring their dogs to him. 
+                           The owner of Pet-R-Us heard about Michael
+                            Lewis and reach out to him to work for the company.
+                            He was given an offer he couldn’t refuse. 
+                           He has helped Pets-R-Us in assessing dogs’ behavior
+                            as well as helping the company to 
+                           understand dog behaviors. He taught puppy classes and really brought a lot of knowledge and skills to the company.</p>
+                        <p class="compInfo"> Michael has a unique approach included a
+                            system that he has developed through years in 
+                           dealing with dogs. He has a gift for connecting 
+                           with dogs. Come to Pet-R-Us, your 
+                           dog will be well trained by him. Russ will also
+                            make sure you have a chance to apply what you are learning throughout the process. </p>                       
+                                               
+                      
                     </div>
                     <div class="divAll">
-                        <img src="../public/photos/dogtrain.jpeg" alt="Dog being trained">  
+                        <img src="img/dogtrain.jpeg" alt="Dog being trained">  
                     </div> 
-                </div>              
+                </div>
+                <div id="trainPrice">
+                    <div>
+                        <h4 class="trainTitle">Puppies Packages</h4> 
+                            <div class="heatTrain">
+                                <div>Consultation (Ages 6-12 weeks)</div>
+                                <div>$200 Plus tax</div>                            
+                            </div>                           
+                            <ul class="listItm">                        
+                                <li>House training</li>
+                                <li>body handling</li>
+                                <li>Basic Behaviors</li>                            
+                            </ul>
+                            <div class="heatTrain">
+                                <div>Puppy Lessons</div>
+                                <div>$700</div>                            
+                            </div>                            
+                            <ul class="listItm">                        
+                                <li>Body handling</li>
+                                <li>Socialization</li>
+                                <li>Behavior (sit and down)</li>                            
+                            </ul>
+                            <div class="heatTrain">
+                                <div>Consultation (Ages 6-12 weeks)</div>
+                                <div>$300 Plus tax</div>                            
+                            </div>
+                            
+                            <ul class="listItm">                        
+                                <li>Beginning leash manners</li>
+                                <li>Name recognition/attention/focus</li>
+                                <li>Beginning leash manners</li>                            
+                            </ul>
+                    </div>
+
+
+
+                    <div>
+                        <h4 class="trainTitle">Adolescent Dogs</h4> 
+                            <div class="heatTrain">
+                                <div>Basic Obedience Training</div>
+                                <div>$550 Plus tax</div>                            
+                            </div>                            
+                            <ul class="listItm">                        
+                                <li>Sit and Extended Sit</li>
+                                <li>Heel position</li>
+                                <li>Place and Extended Place</li>                            
+                            </ul>
+                            <div class="heatTrain">
+                                <div>Puppy Lessons</div>
+                                <div>$330</div>                            
+                            </div>                            
+                            <ul class="listItm">                        
+                                <li>Off-leash heeling</li>
+                                <li>Off-leash recall</li>
+                                <li>Extended and off-leash sit, down</li>                            
+                            </ul>
+                            <div class="heatTrain">
+                                <div>Therapy Dog Training</div>
+                                <div>$1050 Plus tax</div>                            
+                            </div>                            
+                            <ul class="listItm">                        
+                                <li>Name Recognition</li>
+                                <li>Come on Command</li>
+                                <li>No and Off (stop barking/jumping)</li>                            
+                            </ul>
+                    </div>
+
+
+                    <div>
+                        <h4 class="trainTitle">Adult Dogs</h4> 
+                            <div class="heatTrain">
+                                <div>Basic Obedience Training</div>
+                                <div>$1008</div>                            
+                            </div>                            
+                            <ul class="listItm">                        
+                                <li>Dog behavioral issues</li>
+                                <li>Sit, stay and down training</li>
+                                <li>Gate and door control</li>                            
+                            </ul>
+                            <div class="heatTrain">
+                                <div>Dog Lessons</div>
+                                <div>$1200</div>                            
+                            </div>                        
+                            <ul class="listItm">                        
+                                <li>House breaking</li>
+                                <li>Diet and good food manners</li>
+                                <li>Correct holding of the leash and walking</li>                            
+                            </ul>
+                            <div class="heatTrain">
+                                <div>Adult Therapy Dog Training</div>
+                                <div>$1050 Plus tax</div>                            
+                            </div>                          
+                            <ul class="listItm">                        
+                                <li>How to successfully socialize your puppy</li>
+                                <li>Recall - coming when called</li>
+                                <li>The benefits of crate training</li>                            
+                            </ul>
+                    </div>  
+                </div>       
             </section>            
     </body>
-    <footer>&copy; Copyright 2022 Manel Phiseme</footer>
+    <%- include('partials/footer') %>
 </html>

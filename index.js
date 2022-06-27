@@ -28,35 +28,5 @@ app.get('/boarding', (req, res) => {
 })
 
 
-/**
- * 
- app.use(express.static(__dirname + '/public'));
-app.get('/index/', function(req, res){
-    res.sendFile(path.join(__dirname + '/index.html'));
-})
- 
- */
-
-/**
- *  router.get('/', (req, res, next) => {
-    res.render('home')
-})
-
-router.get('/grooming', (req, res, next) => {
-    res.render('grooming')
-}) 
- */
-
-
- 
-
-
-
-
-
-
-
-
-
 // Listen on Port 3000
 app.listen(port, ()=> console.info(`Listening on port ${port}`))

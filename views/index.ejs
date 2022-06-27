@@ -14,35 +14,10 @@
     </head>
     <body>
        
-        <header id="hero-header">
-            <h1>Pets-R-Us</h1>
-                                             
-            <nav id="menu">
-                <a class="menlist" href="/">Home</a> 
-                <div class="subMenu">
-                    <span class="menlist"><a href="">Services</a></span>
-                    <div class="sublist">
-                        <a href="boarding">Boarding</a>                        
-                        <a href="grooming">Grooming</a>
-                        <a href="training">Training</a>
-                    </div>                            
-                </div>
-                <a class="menlist" href="">Booking</a>   
-                <div class="subMenu">                                               
-                    <span class="menlist"><a href="" >Account</a></span>
-                    <div class="sublist">
-                        <a href="" >Register</a>
-                        <a href="">Login</a>                          
-                    </div>                        
-                </div>                    
-            </nav>  
-            <div id="content">                        
-                <h2 id="descript">Trusted for years by Everyone</h2>
-            </div>                
-        </header>         
-                  
-        </section class="allSection">
+        <%- include('partials/headers') %>                  
+        
             <section class="allSection" id="section1">
+              
                 <h3 class="sectTitle">Company Information</h3>
                 <div class="divSection">
                     <div id="divInfo" class="divAll">                        
@@ -155,7 +130,7 @@
                             <p class="reviewName">Samantha Jones</p>
                         </div> 
                     </div> 
-                    <div class="testCont" class="testImg">
+                    <div class="testCont testImg">
                         <h3 class="">Dog of the Week</h3> 
                         <div id="img3">
                             <img class="photos" src="img/dog1.jpeg" alt="Image one of dog of week">
@@ -171,9 +146,9 @@
                     <label for="input1" class="labelName">Name</label>
                     <input type="text" class="allInput" id="input1" placeholder="Full name">
                     <label for="input2"  class="labelName">Email</label>
-                    <input type="text" class="allInput" id="input2 " placeholder="Email">
+                    <input type="text" class="allInput" id="input2" placeholder="Email">
                     <label for="input3" class="labelName">Message</label>
-                    <textarea name="input3" class="allInput" id="input3 " placeholder="Message"></textarea>
+                    <textarea name="input3" class="allInput" id="input3" placeholder="Message"></textarea>
                     <button id="bntId">Submit</button>
                 </form>
             </section> 
@@ -195,7 +170,8 @@
                     setTimeout(slider, 3000);
                 }
                 
-             </script>           
+             </script>               
+           <%- include('partials/footer') %>      
     </body>
-    <footer>&copy; Copyright 2022 Manel Phiseme</footer>
+    
 </html>

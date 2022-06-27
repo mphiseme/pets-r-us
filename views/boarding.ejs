@@ -13,50 +13,82 @@
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">        
     </head>
     <body>
-        <header id="hero-header">
-            <h1>Pets-R-Us</h1>
-                                             
-            <nav id="menu">
-                <a class="menlist" href="/">Home</a> 
-                <div class="subMenu">
-                    <span class="menlist"><a href="">Services</a></span>
-                    <div class="sublist">
-                        <a href="boarding">Boarding</a>                        
-                        <a href="grooming">Grooming</a>
-                        <a href="training">Training</a>
-                    </div>                            
-                </div>
-                <a class="menlist" href="">Booking</a>   
-                <div class="subMenu">                                               
-                    <span class="menlist"><a href="" >Account</a></span>
-                    <div class="sublist">
-                        <a href="" >Register</a>
-                        <a href="">Login</a>                          
-                    </div>                        
-                </div>                    
-            </nav> 
-            <div id="content">                        
-                <h2 id="descript">Trusted for years by Everyone</h2>
-            </div>                
-        </header>         
-                  
-        </section class="allSection">
+        <%- include('partials/headers') %>        
             <section class="allSection" id="section1">
                 <h3 class="sectTitle">Company Information</h3>
                 <div class="divSection">
                     <div id="divInfo" class="divAll">
-                        <p id="compInfo">  .</p>
-                             <ul>
-                                <li></li>
-                                
-                             </ul>                             
-                        <p id="compInfo"></p>
+                        <p class="compInfo">All dogs are welcome to come to Pets-R-Us for boarding. 
+                            A welled rest dog is a happy do. 
+                            Bring your beloved dog to receive boarding 
+                            service at our facility. This is a place where they
+                             your dog can play, socialization, on-going good
+                             manners training and fun. Our place is a safe, 
+                            healthy environment with constant supervision, separate play areas for dogs of all sizes and an outdoor fenced area.                            
+                        </p>
+                        <p class="compInfo">We limit the number of dogs so 
+                            that your pet gets more one-on-one
+                             attention from employees. We even take 
+                            extra steps regarding the lighting in our facilities. 
+                            We dim the lights and play soft music for the dogs 
+                            early in the morning and late at night to make 
+                            it easy for them to nap and relaxation time
+                        </p>
+                        <p class="compInfo"> We make sure that we accommodate with your schedule. 
+                            You can drop your dog off earlier then what you scheduled. 
+                            We will also hang onto your dog for as long as you want. 
+                            We won’t charge you extra if you come late to pick up your dog.                             
+                        </p>
+                        <p class="compInfo">Our facility’s floor is made of rubber
+                            flooring which provides excellent traction 
+                           and reduces stress on joints, backs, and muscles.
+                            When your dog boards at Pets-R-Us of Omaha, 
+                           every day they will enjoy all-day. Please 
+                           bring your dog our location. They will be well trained. 
+                           We have been in business for 15 years now. 
+                           You have nothing to worry about. Please 
+                           choose one of the available plans and book 
+                           a boarding service. You can also drop by the location.
+                        </p>
+                        
+                                                  
+                        
                     </div>
                     <div class="divAll">
-                        <img src="../public/photos/doggrom.jpeg" alt="store picture">  
+                        <img src="img/store4.jpeg" alt="store picture">  
                     </div> 
-                </div>              
+                </div> 
+                
+                <div id="divInfo" class="divAll">                   
+                         <table id="table1">
+                            <tr>
+                                <th>Nights</th>
+                                <th>1 Dog</th>
+                                <th>2 Dogs</th>
+                                <th>3 Dogs</th>
+                            </tr>
+                            <tr>
+                                <td>One Night</td>
+                                <td>$32</td>
+                                <td>$70</td>
+                                <td>$100</td>
+                            </tr>
+                            <tr>
+                                <td>Five Nights</td>
+                                <td>$160</td>
+                                <td>$350</td>
+                                <td>$500</td>
+                            </tr>
+                            <tr>
+                                <td>Five Nights and Over</td>
+                                <td>$160 +30/day</td>
+                                <td>$350 +30/day</td>
+                                <td>$500 +30/day</td>
+                            </tr>
+                         </table>                            
+                    <p id="compInfo"></p>
+                </div>
             </section>            
     </body>
-    <footer>&copy; Copyright 2022 Manel Phiseme</footer>
+    <%- include('partials/footer') %>
 </html>

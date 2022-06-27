@@ -176,3 +176,55 @@ img {
     padding-top: 20px;
     margin-bottom: -17px;
 }
+/**Boarding */
+#table1 {
+    Padding: 30px;
+    width: 100%;
+    
+
+}
+
+#table1 td, th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+th {
+    background: red;
+}
+td {
+    background: #8c8c8c;
+}
+
+/**Training*/
+.listItm {
+    
+}
+.trainTitle {
+    text-align: center;
+}
+#trainPrice {
+    display: flex;
+    padding: 15px;
+    padding-top: 20px;
+    width: 50%;
+}
+.listItm li {
+    list-style-position: inside;
+    list-style-type: none;
+    text-align: center;
+    background: #f2f2f2;
+    margin: 10px;
+
+}
+.heatTrain {
+    border: 1px solid brown;
+    display: flex;
+    margin: 30px;
+    padding: 10px;
+    background-color: #ecffe5;
+   
+}
+.heatTrain div {
+    padding: 10px;
+    width: 100%;
+}
