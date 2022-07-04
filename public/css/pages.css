@@ -81,9 +81,50 @@ h3 {
 }
 #bntId {
     padding: 12px 20px;
+    box-shadow: black;
+    border-radius: 4px;
+    cursor: pointer; 
+    width: 100%;  
+    font-size: 15px;
+    font-weight: bold;
+}
+/* Id for button in register*/
+#bntI2{
+    padding: 12px 20px;
+    background-color: rgb(225, 11, 11);
+    border-radius: 4px;
+    margin-top: 10px;
     border: none;
     border-radius: 4px;
-    cursor: pointer;   
+    cursor: pointer; 
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    
+  
+}
+#bntI2 a {
+    color: white;
+}
+/* User list*/
+#bntI3 {
+    padding: 12px 20px;
+    box-shadow: black;
+    border-radius: 4px;
+    border: 1px;
+    margin-left: 5%;
+    border-radius: 4px;
+    cursor: pointer;    
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(225, 11, 11);
+}
+#bntI3 a {
+    color: white;
+}
+#bntI2:hover {
+    background-color: #45a049;
 }
 #bntId:hover {
     background-color: #45a049;

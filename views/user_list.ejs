@@ -1,0 +1,39 @@
+<!--
+    Title: user_list.ejs
+    Author: Manel Phiseme
+    Date: 7/3/2022
+    Description: List of Registered users.
+-->
+<link href="css/theme.css" type="text/css" rel="stylesheet">
+ <link href="css/pages.css" type="text/css" rel="stylesheet">
+ 
+ <%- include('partials/headers') %>
+ <h2 class="sectTitle">Active User List</h2>
+
+<div>
+    <table id="table1">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <tbody>
+            <% users.forEach(function(user){ %>
+        <tr>
+            <td>
+                <%= user.username %>
+            </td>
+            <td>
+                <%= user.email %>
+            </td>
+        </tr>
+        </tbody>
+        <% }) %>
+
+    </table>      
+</div>
+<div>
+    <button type="submitm" id="bntI3" class="userInp"><a href="/register">Back to Registration page</a></button>
+</div>
+<%- include('partials/footer') %>
+
+
