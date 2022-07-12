@@ -1,0 +1,37 @@
+<!--
+    Title: login.ejs
+    Author: Manel Phiseme
+    Date: 7/5/2022
+    Description: Login form.
+-->
+<link href="css/theme.css" type="text/css" rel="stylesheet">
+<link href="css/pages.css" type="text/css" rel="stylesheet">  
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">        
+
+<section>
+    <h1>Login</h1>    
+<form id="contactCard" action="/login" method="POST">
+    <div>
+        <label for="name" class="userInp"  >Username</label>
+        
+        <input id="name" class="allInput" name="name">
+    </div>
+    <div>
+        <label for="password" class="userInp"  >Password</label>
+        <input type="hidden" name="_csrf"  value="<%= csrfToken %>">
+        <input id="password" class="allInput" name="password">
+    </div>    
+    <!-- 
+        <div >
+        <button type="submit" id="bntI2" class="userInp logOut"><a href="/">Click to go back to home page</a></button>
+    </div>
+    --> 
+    <div>
+        <input type="submit" value="login">
+    </div>  
+</form>   
+</div>
+</section>
+<%- include('partials/footer') %>     
+
+

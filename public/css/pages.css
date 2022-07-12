@@ -269,3 +269,15 @@ td {
     padding: 10px;
     width: 100%;
 }
+/*Logout  */
+
+#logOutSect {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-left: 30%;
+    padding-right: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

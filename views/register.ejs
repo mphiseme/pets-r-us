@@ -4,10 +4,17 @@
     Date: 7/3/2022
     Description: Registration form.
 -->
-<link href="css/theme.css" type="text/css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Register</title>
+        <link href="css/theme.css" type="text/css" rel="stylesheet">
         <link href="css/pages.css" type="text/css" rel="stylesheet">  
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">        
-<%- include('partials/headers') %>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">      
+    </head>
+    <body>
+       
+        <%- include('partials/headers') %>
 <section>
     <h1>Registration Form</h1>
 <form id="contactCard" action="/register" method="POST">
@@ -17,6 +24,7 @@
     </div>
     <div>
         <label for="password" class="userInp"  >Password</label>
+        <input type="hidden" name="_csrf"  value="<%= csrfToken %>">
         <input id="password" class="allInput" name="password">
     </div>
     <div>
@@ -28,10 +36,35 @@
     </div>
     <div>
         <button type="submitm" id="bntI2" class="userInp"><a href="/user_list">User's list</a></button>
-    </div>
-</form>   
-</div>
+    </div>    
+
 </section>
+<section>
+    <table id="table1">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <tbody>
+            <% users.forEach(function(user){ %>
+        <tr>
+            <td>
+                <%= user.username %>
+            </td>
+            <td>
+                <%= user.email %>
+            </td>
+        </tr>
+        </tbody>
+        <% }) %>
+
+    </table> 
+</section>
+<%- include('partials/footer') %>    
+    </body>
+</html>
+  
+ 
 
 
     
