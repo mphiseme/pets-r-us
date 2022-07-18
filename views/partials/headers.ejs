@@ -11,12 +11,19 @@
                 <a href="training">Training</a>
             </div>                            
         </div>
+        <div style="text-align: right; float: right">          
+        </div>
         <a class="menlist" href="">Booking</a>   
         <div class="subMenu">                                               
             <span class="menlist"><a href="" >Account</a></span>
             <div class="sublist">
-                <a href="register" >Register</a>
-                <a href="login">Login</a>                          
+                <% if(currentUser) { %>
+                    <a href="#">Hi <%= currentUser %></a> <a href="/logout">Logout</a>
+                <% } %>
+                <% if(!currentUser) { %>
+                    <a href="register" >Register</a>
+                    <a href="login">Login</a> 
+                <% } %>                                         
             </div>                        
         </div>                    
     </nav>  

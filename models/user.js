@@ -11,9 +11,9 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 // mongoose Schema model
 let userSchema = new mongoose.Schema({     
-  //  password: {type: String, required:true},
-    username: {type: String, required: true}, 
-    email: {type: String, required: true},   
+    //  password: {type: String, required:true},
+    // username: {type: String, required: true},
+    email: {type: String },
     createdAT: { type: Date, default: Date.now },
 });
 

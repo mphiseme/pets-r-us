@@ -10,16 +10,16 @@
 
 <section>
     <h1>Login</h1>    
-<form id="contactCard" action="/login" method="POST">
+<form id="contactCard" action="/login" method="post">
     <div>
-        <label for="name" class="userInp"  >Username</label>
+        <label for="username" class="userInp">Username</label>
         
-        <input id="name" class="allInput" name="name">
+        <input id="username" class="allInput" name="username">
     </div>
     <div>
         <label for="password" class="userInp"  >Password</label>
         <input type="hidden" name="_csrf"  value="<%= csrfToken %>">
-        <input id="password" class="allInput" name="password">
+        <input id="password" type="password" class="allInput" name="password">
     </div>    
     <!-- 
         <div >
@@ -30,7 +30,7 @@
         <input type="submit" value="login">
     </div>  
 </form>   
-</div>
+
 </section>
 <%- include('partials/footer') %>     
 

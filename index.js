@@ -1,83 +1,93 @@
-//imports
-const express= require('express');
-const bodyParser = require("body-parser")
+// add all npm imports here
+const express = require('express');
 const mongoose = require('mongoose');
-const User = require("./models/user");
-const Login = require("./models/login");
-const { json } = require('express');
-const passport = require('passport');
-const app = express();
-const assert = require('assert')
-const session = require('express-session');
-const flash = require("express-flash")
-const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
-const { authenticate } = require('passport');
-const csrf = require("csurf")
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const session = require('express-session');
+const csurf = require("csurf")
 const helmet = require('helmet');
-const port = 3005; 
+const fs =require('fs');
 
+// mongoose require statements bellow...
+const User = require("./models/user");
+const Booking = require("./public/data/services.json");
+console.log(Booking);
+
+const app = express();
+const csurfProtection = csurf({cookie: true});
+const port = 3000 || process.env.PORT; // NEW
+
+// app.use statements bellow
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
-
 app.use(cookieParser());
-app.use(flash());
-app.use(session({
-    secret: 's3cret',
-    //resave: true,
-    resave: false,
-    //saveUninitialized: true
-    saveUninitialized: false
-}));
 
 //static files
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/img', express.static(__dirname + 'public/img'))
 
-//CSRF section
-const csurfProtection = csrf({ cookie: true });
+app.use(session({
+    secret: 's3cret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+/**
+ * Passport initialization  * 
+ */
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+/**
+ * Database connection
+ */
+const conn = 'mongodb+srv://pet-user:pet1@buwebdev-cluster-1.96qtg.mongodb.net/?retryWrites=true&w=majority'; // NEW
+mongoose.connect(conn).then(() => {
+    console.log('Connection to the database was successful');
+}).catch(err => {
+    console.log(`MongoDB Error: ${err.message}`)
+})
+
+/**
+ * New
+ */
+app.use((req, res, next) => {
+    if (req.session.passport) {
+        console.log(req.session.passport.user);
+        res.locals.currentUser = req.session.passport.user;
+    } else {
+        res.locals.currentUser = null;
+    }
+    next();
+})
 
 //CSRF section2
 app.use(csurfProtection);
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     const token = req.csrfToken();
     res.cookie('XSRF-TOKEN', token);
     res.locals.csrfToken = token;
     next();
 })
-
-//This is to prevent cross-site scripting
 app.use(helmet.xssFilter());
 
-//Set Views
+// add app.set statements here
 app.set('views', './views')
 app.set('view engine', 'ejs')
-//app.engine('.html', require('ejs').__express);
-//app.set('view engine', 'html')
 
-
-app.get('/register', (req, res) => {
-    //res.render('register')
-    User.find({}, function(err, users){
-      if(err){
-        console.log(err)
-      }else{
-        res.render("register", {
-          users:users
-        })
-      }
-    })
-}) 
-
-app.get('/login', (reg, res)=> {
-    res.render('login')
+app.use(function(err, req, res, next) {
+    console.log(err);
 })
-
+// Pages Routes section 
 app.get('/', (req, res) => {
     res.render('index')
 })
+
 app.get('/grooming', (req, res) => {
     res.render('grooming')
 })
@@ -87,145 +97,126 @@ app.get('/training', (req, res) => {
 app.get('/boarding', (req, res) => {
     res.render('boarding')
 })
+//Appointment Page
+app.get('/appointment', (req, res) =>{
+    res.render('appointment')
+})
 
-
-
-//let dbConn = mongodb.connect("mongodb+srv://pet-user:pet1@buwebdev-cluster-1.96qtg.mongodb.net/?retryWrites=true&w=majority");
-mongoose.connect("mongodb+srv://pet-user:pet1@buwebdev-cluster-1.96qtg.mongodb.net/?retryWrites=true&w=majority");
-let db = mongoose.connection;
-
- function initializePassport(passport, getUserByEmail, getUserById){
-    const authenticateUser = async (email, password, done) => {
-        const user = getUserByEmail(email)
-        {
-            if(user === null){
-                return done(null, false, {message:'No user with that email'})
-            }
-            try {
-                if (await bcrypt.compare(password, user.password)){
-                    return done(null, user)
-
-                } else {
-                  return done(null, false, {message: 'Password incorrect'}) 
-
-                }
-            } catch (e) {
-                return done(e)
-
-            }
-        }
-
-    }
-    //passport.serializeUser(User.serializeUser());
-    passport.use(new LocalStrategy({usernameField: 'email'}, authenticateUser ))
-    passport.serializeUser((user, done)=> done(null, user.id))
-    passport.deserializeUser((id, done) => {
-        return done(null, getUserById(id))
-    })
-
-
-}
- initializePassport(passport, email => {
-   User.find(user => user.email === email),
-   id => User.find(user => user.id === id)
-   
- }) 
-
-//passport.js
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-//check for errors with connection to database
-db.on('error',()=> console.log("Error in connecting to Database"));
-db.once("open", ()=>console.log("connected to Database"));
-
-
-   app.get('/user_list', (req, res) => {   
-    //const collectionB = db.collection("users");
-    User.find({}).toArray(function(err, users){
-        console.log(users)
-        assert.equal(err, null);        
-       
-        res.render('user_list.ejs', {
-            "users": users,
-            csrfToken: req.csrfToken(), 
-        })                 
-    })     
-});
-
-/*
-//Testing register page
-app.get("/register", (req, res) => {
+app.get('/register', (req, res) => {
+    //res.render('register')
     User.find({}, function (err, users) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("register", {
-          users: users,          
-        });
-      }
-    });
-  }); */
-
-
-//this code encrypt 
-app.post('/register', async (req, res) => {
-  try{  
-
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-    const user = await User.create({
-      username:req.body.name, 
-      password: hashedPassword,
-      email:req.body.email,
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("register", {
+                users: users
+            })
+        }
     })
-    console.log(user)
-    res.redirect('/user_list')
-  } catch {
-    res.redirect('/register')
-  }  
-  
- });
- /*
-//Login route 
-app.post('/login', passport.authenticate('local',{
-    successRedirect: '',
-    failureRedirect: '/login',
-    failureFlash: true
-}));*/
+})
 
+//pull input from register's gage
+app.post('/register', async(req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
 
-// check whether user input correct to have them log in
+    console.log(username + " " + password + " " + email);
+    User.register(new User({ username: username, email: email }),
+        password, function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.redirect('/register')
+            }
+
+            passport.authenticate("local")(
+                req, res, function () {
+                    res.redirect('/register')
+                });
+        });
+})
+
+//pull input from appointment page gage
+app.post('/appointment', async(req, res, next) => {
+    const username = req.body.username;
+    const lastName = req.body.lastName;
+    const firstName = req.body.firstName;
+    const password = req.body.password;
+    const email = req.body.email;
+
+    console.log(username + " " + password + " " + email);
+    Booking.register(new Booking({ username: username,firstName:firstName, lastName:lastName, email: email }),
+        password, function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.redirect('/')
+            }
+
+            passport.authenticate("local")(
+                req, res, function () {
+                    res.redirect('/')
+                });
+        });
+})
+
+//login section
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
 app.post("/login", passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login"    
-}), 
-function (req, res) {});
+    failureRedirect: "/login",
+}), function (req, res) {
+});
 
+/**
+ * app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+})
+ */
+app.get('/logout', (req, res) => {
+    req.logout(function(err){
+        if (err){
+            return next(err);
+        }
+        res.redirect('/');
+    });    
+})
+
+app.get('/user_list', (req, res) => {
+    //const collectionB = db.collection("users");
+    User.find({}).toArray(function (err, users) {
+        console.log(users)
+        assert.equal(err, null);
+
+        res.render('user_list.ejs', {
+            "users": users,
+            csrfToken: req.csrfToken(),
+        })
+    })
+});
+
+//Json section
+  fs.readFile("booking", (err, data) =>{
+    if (err) {
+        console.log("File read failed:", err);
+    return;
+
+    }   
+    console.log("File data:", jsonString);    
+})
+ 
 // check isLoggedIn
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect("/login");
 }
 
-//Logout section  
-app.get("/logout", (req, res) => {
-  res.render('logout');
-});
-
-  app.get('/logout', (req, res) => {
-  req.logout(function (err){
-    if(err){
-      return next(err);
-    }
-  });
-    res.redirect('index');
-  });
-  
 // Listen on Port 3000
-app.listen(port, ()=> console.info(`Listening on port ${port}`))
+app.listen(port, () => console.info(`Listening on port ${port}`))
 
 
