@@ -18,7 +18,7 @@ const { render } = require('ejs');
 
 const app = express();
 const csurfProtection = csurf({cookie: true});
-const port = 3000 || process.env.PORT; // NEW
+const port = process.env.PORT || 3000; // NEW
 
 // app.use statements bellow
 app.use(express.urlencoded({extended: true}))
@@ -180,6 +180,7 @@ app.get('/user_list', (req, res) => {
 //console.log(Services)const service= JSON.parse(Services)
 
 
+
 //Appointment page route
 app.get('/schedule', (req,res) =>{
 
@@ -199,6 +200,7 @@ app.get('/schedule', (req,res) =>{
         })
         
     }) 
+    
     
 /*
     Appointment.find({}, function (err, appointment) {
