@@ -22,6 +22,6 @@ let appointSchema = new mongoose.Schema({
 //userSchema.plugin(passportLocalMongoose);
 
 //export mongoose model
-module.exports = mongoose.model("login", appointSchema);
+module.exports = mongoose.model("Appointments", appointSchema);
 
 

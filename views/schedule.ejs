@@ -1,0 +1,55 @@
+
+<!--
+    Title: appointment.ejs
+    Author: Manel Phiseme
+    Date: 7/17/2022
+    Description: appointment form.
+-->
+<link href="css/theme.css" type="text/css" rel="stylesheet">
+<link href="css/pages.css" type="text/css" rel="stylesheet">  
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">        
+
+ <%- include('partials/headers') %>
+<section>
+    <div id="contactCard"> 
+        <h1>Schedule Your Appointment</h1>       
+        <form action="/" method="post" id="contactCard">
+            <div>
+                <label for="userName" class="userInp">User Name</label>
+                <input id="userName" type="text"
+                 class="allInput" name="userName" placeholder="<%= currentUser %>">
+            </div>
+            <div>
+                <label for="firstName" class="userInp">First Name</label>
+                <input id="firstName" type="text"
+                 class="allInput" name="firstName">
+            </div>
+            <div>
+                <label for="LastName" class="userInp">Last Name</label>
+                <input id="LastName" type="text"
+                 class="allInput" name="LastName">
+            </div>
+            <div>
+                <label for="email" class="">Email</label>
+                <input id="email" type="email" class="allInput">               
+            </div> 
+            <div>
+               <div>
+                <label for="services" class="userInp">Service</label>
+               </div> 
+                <select id="services" name="services"  class="emailPut">  
+                    <option value="" style="font:bold;">-- Select A Service --</option>
+                    <% services.forEach(function(service){ %>
+                        <option value="<%= service.value %>"><%= service.text %></option>
+                    <% }) %>                                        
+                </select>  
+            </div> 
+            <div>
+                <button type="submit" id="bntId" class="userInp">Book Appointment Now</button>
+            </div>         
+
+        </form>
+    </div>
+</section>
+
+<%- include('partials/footer') %> 

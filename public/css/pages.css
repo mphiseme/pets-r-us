@@ -58,6 +58,7 @@ h3 {
 #contactCard{
     width: 100%;
     border-radius: 2px;
+    padding-bottom: 25px;
     background-color:aquamarine;
 }
 #localCities {
@@ -280,4 +281,14 @@ td {
     justify-content: center;
     align-items: center;
 }
+/**schedule page */
+.emailPut{
+    width: 50%;
+    border-radius: 3px;
+    padding: 12px;
+    margin-top: 10px;    
+    padding-top: 13px; 
+    margin-bottom: 20px;       
+}
+
 

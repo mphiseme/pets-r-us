@@ -8,11 +8,13 @@ const session = require('express-session');
 const csurf = require("csurf")
 const helmet = require('helmet');
 const fs =require('fs');
+const Services = require("./public/data/services.json");
 
 // mongoose require statements bellow...
 const User = require("./models/user");
-const Booking = require("./public/data/services.json");
-console.log(Booking);
+const Appointment = require("./models/appointments");
+const { render } = require('ejs');
+
 
 const app = express();
 const csurfProtection = csurf({cookie: true});
@@ -97,25 +99,22 @@ app.get('/training', (req, res) => {
 app.get('/boarding', (req, res) => {
     res.render('boarding')
 })
-//Appointment Page
-app.get('/appointment', (req, res) =>{
-    res.render('appointment')
-})
+
 
 app.get('/register', (req, res) => {
     //res.render('register')
-    User.find({}, function (err, users) {
+    User.find({}, function (err, user) {
         if (err) {
             console.log(err)
         } else {
             res.render("register", {
-                users: users
+                users: user
             })
         }
     })
 })
 
-//pull input from register's gage
+//pull input from register's page
 app.post('/register', async(req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -132,29 +131,6 @@ app.post('/register', async(req, res, next) => {
             passport.authenticate("local")(
                 req, res, function () {
                     res.redirect('/register')
-                });
-        });
-})
-
-//pull input from appointment page gage
-app.post('/appointment', async(req, res, next) => {
-    const username = req.body.username;
-    const lastName = req.body.lastName;
-    const firstName = req.body.firstName;
-    const password = req.body.password;
-    const email = req.body.email;
-
-    console.log(username + " " + password + " " + email);
-    Booking.register(new Booking({ username: username,firstName:firstName, lastName:lastName, email: email }),
-        password, function (err, user) {
-            if (err) {
-                console.log(err);
-                return res.redirect('/')
-            }
-
-            passport.authenticate("local")(
-                req, res, function () {
-                    res.redirect('/')
                 });
         });
 })
@@ -185,6 +161,7 @@ app.get('/logout', (req, res) => {
     });    
 })
 
+/* 
 app.get('/user_list', (req, res) => {
     //const collectionB = db.collection("users");
     User.find({}).toArray(function (err, users) {
@@ -197,17 +174,72 @@ app.get('/user_list', (req, res) => {
         })
     })
 });
+*/
+
 
 //Json section
-  fs.readFile("booking", (err, data) =>{
-    if (err) {
-        console.log("File read failed:", err);
-    return;
+//console.log(Services)const service= JSON.parse(Services)
 
-    }   
-    console.log("File data:", jsonString);    
+
+//Appointment page route
+app.get('/schedule', (req,res) =>{
+
+    let serviceJsonFile =fs.readFileSync("./public/data/services.json");
+    let services = JSON.parse(serviceJsonFile); 
+
+    Appointment.find({}, (err, appointM ) =>{
+        if (err){
+            console.log(err)
+            errorMessage = 'MongoDB Exception: ' + err;
+        }else { 
+            errorMessage = null; 
+        }
+        res.render('schedule', {
+            services: services   
+                      
+        })
+        
+    }) 
+    
+/*
+    Appointment.find({}, function (err, appointment) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("register", {
+                users: appointment
+            })
+        }
+    })*/
 })
- 
+
+//pull input from appointment page gage
+app.post('/schedule', isLoggedIn, (req, res, next) => {
+    const username = res.locals.currentUser;
+    const lastName = req.body.lastName;
+    const firstName = req.body.firstName;
+    const service = req.body.services;
+    const email = req.body.email;
+
+    let bookAppoint = new Appointment({
+    userName: username,
+    lastName: lastName,
+    firstName: firstName,
+    email: email,  
+    service: service                            
+}) 
+Appointment.create(bookAppoint, (err, bookAppoint) =>{
+    if(err){
+        console.log(err);
+    } else {        
+        res.redirect("/")
+    }
+})
+
+            
+       
+})  
+
 // check isLoggedIn
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {

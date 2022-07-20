@@ -13,12 +13,16 @@
         </div>
         <div style="text-align: right; float: right">          
         </div>
-        <a class="menlist" href="">Booking</a>   
+        <% if(currentUser) { %>
+        <a class="menlist" href="/schedule">Booking</a> 
+        <% } %>  
         <div class="subMenu">                                               
             <span class="menlist"><a href="" >Account</a></span>
             <div class="sublist">
                 <% if(currentUser) { %>
-                    <a href="#">Hi <%= currentUser %></a> <a href="/logout">Logout</a>
+                    <a href="#">Hi <%= currentUser %></a> 
+                    <a href="/schedule">Schedule Appt.</a>
+                    <a href="/logout">Logout</a>
                 <% } %>
                 <% if(!currentUser) { %>
                     <a href="register" >Register</a>
