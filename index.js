@@ -176,7 +176,6 @@ app.get('/user_list', (req, res) => {
 });
 */
 
-
 //Json section
 //console.log(Services)const service= JSON.parse(Services)
 
@@ -234,9 +233,7 @@ Appointment.create(bookAppoint, (err, bookAppoint) =>{
     } else {        
         res.redirect("/")
     }
-})
-
-            
+})            
        
 })  
 
