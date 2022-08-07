@@ -7,11 +7,11 @@
 
 //import mongoose module and passport-local-mongoose module
 const mongoose = require('mongoose')
-//const passportLocalMongoose = require('passport-local-mongoose');
+
 
 // mongoose Schema model
 let appointSchema = new mongoose.Schema({  
-    userName: {type: String, require: true},
+    userName: {type: String},
     firstName: {type: String, require: true},
     lastName: {type: String, require: true},
     email: {type: String, require: true},
@@ -19,7 +19,6 @@ let appointSchema = new mongoose.Schema({
     createdAT: { type: Date, default: Date.now },
 });
 
-//userSchema.plugin(passportLocalMongoose);
 
 //export mongoose model
 module.exports = mongoose.model("Appointments", appointSchema);

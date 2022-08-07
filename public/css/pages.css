@@ -290,5 +290,41 @@ td {
     padding-top: 13px; 
     margin-bottom: 20px;       
 }
-
-
+/** Profile and Login*/
+#sectionBack {
+    background-image: url("../img/store4.jpeg");
+    padding-bottom: 15px;
+    background-attachment: fixed;   
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#formSize {
+    margin: 10%;
+    
+}
+#contactCard {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+/** profile */
+#profilList{    
+    background-color: #ddd;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#ProflWel {
+    text-align: center;
+    background-color: rgb(72, 69, 69); 
+    Padding-top: 3%;
+    Padding-bottom: 3%;
+}
+#profilList li {
+    font-size: 25px;
+    list-style-type: none;
+    
+}
+.profile{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}

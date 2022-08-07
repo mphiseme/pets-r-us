@@ -7,29 +7,28 @@
 <link href="css/theme.css" type="text/css" rel="stylesheet">
 <link href="css/pages.css" type="text/css" rel="stylesheet">  
  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">        
-
-<section>
-    <h1>Login</h1>    
-<form id="contactCard" action="/login" method="post">
-    <div>
-        <label for="username" class="userInp">Username</label>
-        
-        <input id="username" class="allInput" name="username">
+ <head>
+    <title>Login</title>
+</head>
+<section id="sectionBack">
+    <h1 style="font-weight:bold; font-size: 27px;background-color:rgb(225, 11, 11);padding-top:15px;">Login</h1>
+    <div id="formSize">
+        <form id="contactCard" action="/login" method="post">
+            <div>
+                <label for="username" class="userInp">Username</label>
+                
+                <input id="username" class="allInput" name="username">
+            </div>
+            <div>
+                <label for="password" class="userInp"  >Password</label>
+                <input type="hidden" name="_csrf"  value="<%= csrfToken %>">
+                <input id="password" type="password" class="allInput" name="password">
+            </div> 
+            <div>
+                <input type="submit" id="bntI2" class="userInp" value="login">
+            </div>  
+        </form>   
     </div>
-    <div>
-        <label for="password" class="userInp"  >Password</label>
-        <input type="hidden" name="_csrf"  value="<%= csrfToken %>">
-        <input id="password" type="password" class="allInput" name="password">
-    </div>    
-    <!-- 
-        <div >
-        <button type="submit" id="bntI2" class="userInp logOut"><a href="/">Click to go back to home page</a></button>
-    </div>
-    --> 
-    <div>
-        <input type="submit" value="login">
-    </div>  
-</form>   
 
 </section>
 <%- include('partials/footer') %>     

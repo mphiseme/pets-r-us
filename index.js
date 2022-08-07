@@ -18,7 +18,7 @@ const { render } = require('ejs');
 
 const app = express();
 const csurfProtection = csurf({cookie: true});
-const port = process.env.PORT || 3000; // NEW
+const port =  3000 || process.env.PORT; // NEW
 
 // app.use statements bellow
 app.use(express.urlencoded({extended: true}))
@@ -100,9 +100,8 @@ app.get('/boarding', (req, res) => {
     res.render('boarding')
 })
 
-
-app.get('/register', (req, res) => {
-    //res.render('register')
+//Register page route
+app.get('/register', (req, res) => {    
     User.find({}, function (err, user) {
         if (err) {
             console.log(err)
@@ -146,12 +145,7 @@ app.post("/login", passport.authenticate("local", {
 }), function (req, res) {
 });
 
-/**
- * app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-})
- */
+//This logout user from site
 app.get('/logout', (req, res) => {
     req.logout(function(err){
         if (err){
@@ -161,83 +155,72 @@ app.get('/logout', (req, res) => {
     });    
 })
 
-/* 
-app.get('/user_list', (req, res) => {
-    //const collectionB = db.collection("users");
-    User.find({}).toArray(function (err, users) {
-        console.log(users)
-        assert.equal(err, null);
-
-        res.render('user_list.ejs', {
-            "users": users,
-            csrfToken: req.csrfToken(),
-        })
-    })
-});
-*/
-
 //Json section
-//console.log(Services)const service= JSON.parse(Services)
-
-
-
-//Appointment page route
-app.get('/schedule', (req,res) =>{
-
+//pull input from appointment page 
+app.get('/schedule',isLoggedIn, (req, res) => {
     let serviceJsonFile =fs.readFileSync("./public/data/services.json");
     let services = JSON.parse(serviceJsonFile); 
 
-    Appointment.find({}, (err, appointM ) =>{
-        if (err){
-            console.log(err)
-            errorMessage = 'MongoDB Exception: ' + err;
-        }else { 
-            errorMessage = null; 
-        }
-        res.render('schedule', {
-            services: services   
-                      
-        })
-        
-    }) 
-    
-    
-/*
-    Appointment.find({}, function (err, appointment) {
-        if (err) {
-            console.log(err)
-        } else {
-            res.render("register", {
-                users: appointment
-            })
-        }
-    })*/
+    res.render("schedule", {
+        services: services
+    })
 })
 
-//pull input from appointment page gage
-app.post('/schedule', isLoggedIn, (req, res, next) => {
-    const username = res.locals.currentUser;
+//pull input from register's form page
+app.post('/schedule', (req, res, next) => {
+    const username= res.locals.currentUser;
     const lastName = req.body.lastName;
     const firstName = req.body.firstName;
     const service = req.body.services;
     const email = req.body.email;
+   
+    console.log(lastName + " " + firstName + " " + service + "" + email);
+    let bookAppoint = new Appointment({  
+        userName: username,     
+        lastName: lastName,
+        firstName: firstName,
+        email: email,  
+        service: service  
 
-    let bookAppoint = new Appointment({
-    userName: username,
-    lastName: lastName,
-    firstName: firstName,
-    email: email,  
-    service: service                            
-}) 
-Appointment.create(bookAppoint, (err, bookAppoint) =>{
-    if(err){
-        console.log(err);
-    } else {        
-        res.redirect("/")
-    }
-})            
-       
-})  
+    }); 
+    Appointment.create(bookAppoint, (err, bookAppoint) =>{
+        if(err){
+            console.log(err);
+        } else {  
+                  
+            res.redirect("/")
+        }
+    }) 
+})
+
+//pull input from register's form page
+app.get("/api/appointments",isLoggedIn,async(req, res)=>{    
+    Appointment.find({}, function (err, appoint) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(appoint);
+        }
+    })
+})
+
+app.get("/profile", isLoggedIn, async (req, res)=>{
+    let username = req.session.passport.email;
+    let email = req.session.passport.email;
+   
+   
+    Appointment.findOne({username: username}, function (err, appointment){
+        if(err){
+            console.log(err);
+        }else {
+            res.render("profile", {
+                appointments:appointment,                
+                email: email,
+            })
+        }
+    })
+
+})
 
 // check isLoggedIn
 function isLoggedIn(req, res, next) {

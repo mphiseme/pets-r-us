@@ -1,0 +1,62 @@
+
+<!--
+    Title: profile.ejs
+    Author: Manel Phiseme
+    Date: 7/24/2022
+    Description: profile page.
+-->
+<link href="css/theme.css" type="text/css" rel="stylesheet">
+<link href="css/pages.css" type="text/css" rel="stylesheet">  
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">      
+<head>
+    <title>My Profile</title>
+</head>
+<%- include('partials/headers') %>
+<section id="" >  
+
+    <P id="ProflWel" style="font-weight:bold;color: white; font-size: 23px">Welcome back to your profile (<%= currentUser %>)</P>
+    <ul id="profilList">
+        <!--If it's a current user get this below code get their info-->
+        <% if(currentUser) { %>        
+        <li>User Name:<b><%= currentUser %></b></li>  
+        <% } %>
+    </ul>
+    <div id="appointments"></div>   
+    <script>
+        //fetch user's appointment detail using API
+        fetch("/api/appointments")
+            .then((res) => res.json())
+            .then((data) => {
+                 //create table and display user's appointment 
+                 //on table
+                let tableBuild = `
+                <table id="table1" class="profile">
+                    <tr>                        
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Service</th>
+                    </tr>`;
+                     // loop over appointment for user's info        
+                 for (let appoint of data) {
+                    tableBuild += `
+                    <tr>
+                        <td>${appoint.firstName}</td>
+                        <td>${appoint.lastName}</td>
+                        <td>${appoint.email}</td>
+                        <td>${appoint.service}</td>
+                    </tr>
+                    `;                    
+                 }
+                 tableBuild += `</table>`;
+                  //Assign created table to div with ID appointments
+                 document.getElementById("appointments").innerHTML = tableBuild;                
+                
+
+            })
+    </script>
+</section>
+<section>
+    <%- include('partials/footer') %> 
+</section>
+

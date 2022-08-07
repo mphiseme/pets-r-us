@@ -1,3 +1,9 @@
+/**
+Title: theme.css
+Author: Manel Phiseme
+Date: 6/19/2022
+Description: Css file for Pets-R-US Site.
+**/
 header {  
     background-image: url("../img/bckgrnd2.png");    
     background-size: cover;
@@ -47,8 +53,8 @@ nav a {
 }
 footer {
     text-align: center;
-    padding: 20px;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 20px;    
 }
 .allSection {    
     padding: 0px 80px;

@@ -1,3 +1,9 @@
+<!--
+    Title: header.ejs
+    Author: Manel Phiseme
+    Date: 6/19/2022
+    Description: Page header info.
+-->
 <header id="hero-header">
     <h1>Pets-R-Us</h1>
                                      
@@ -16,11 +22,17 @@
         <% if(currentUser) { %>
         <a class="menlist" href="/schedule">Booking</a> 
         <% } %>  
-        <div class="subMenu">                                               
-            <span class="menlist"><a href="" >Account</a></span>
+        <div class="subMenu"> 
+            <% if(!currentUser) { %>
+                <span class="menlist"><a href="" >Account</a></span> 
+            <% } %> 
+            <% if(currentUser) { %> 
+                <span class="menlist"><a href="" >My Account</a></span>
+            <% } %>  
             <div class="sublist">
                 <% if(currentUser) { %>
                     <a href="#">Hi <%= currentUser %></a> 
+                    <a href="/profile">Profile</a>
                     <a href="/schedule">Schedule Appt.</a>
                     <a href="/logout">Logout</a>
                 <% } %>

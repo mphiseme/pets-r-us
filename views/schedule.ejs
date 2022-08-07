@@ -8,30 +8,35 @@
 <link href="css/theme.css" type="text/css" rel="stylesheet">
 <link href="css/pages.css" type="text/css" rel="stylesheet">  
  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">        
-
+ <head>
+    <title>Register</title>
+</head>
  <%- include('partials/headers') %>
 <section>
     <div id="contactCard"> 
-        <h1>Schedule Your Appointment</h1>       
-        <form action="/" method="post" id="contactCard">
-            <div>
+        <h1 style="color:black">Schedule Your Appointment</h1>       
+        <form action="/schedule" method="post" id="contactCard">
+            <input name="_csrf" type="hidden" value="<%= csrfToken %>">
+            <!--
+                <div>
                 <label for="userName" class="userInp">User Name</label>
                 <input id="userName" type="text"
                  class="allInput" name="userName" placeholder="<%= currentUser %>">
             </div>
+            -->            
             <div>
                 <label for="firstName" class="userInp">First Name</label>
                 <input id="firstName" type="text"
                  class="allInput" name="firstName">
             </div>
             <div>
-                <label for="LastName" class="userInp">Last Name</label>
-                <input id="LastName" type="text"
-                 class="allInput" name="LastName">
+                <label for="lastName" class="userInp">Last Name</label>
+                <input id="lastName" type="text"
+                 class="allInput" name="lastName">
             </div>
             <div>
                 <label for="email" class="">Email</label>
-                <input id="email" type="email" class="allInput">               
+                <input id="email" type="email" class="allInput" name="email">               
             </div> 
             <div>
                <div>
